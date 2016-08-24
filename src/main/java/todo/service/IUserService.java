@@ -13,4 +13,6 @@ public interface IUserService {
     User createUser(UserSignUpForm userSignUpForm);
 
     Optional<User> getUserByEmail(String email);
+
+    Optional<User> getCurrentUser();
 }

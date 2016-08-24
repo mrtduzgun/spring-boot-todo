@@ -1,13 +1,15 @@
 package todo.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import todo.model.Todo;
 import todo.model.form.TodoCreateForm;
-import todo.repository.TodoRepository;
+import todo.service.ITodoService;
+import todo.service.IUserService;
 
 import javax.validation.Valid;
 
@@ -19,8 +21,13 @@ import javax.validation.Valid;
 @RequestMapping("todo")
 public class TodoController {
 
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
-    private TodoRepository todoRepository;
+    private IUserService userService;
+
+    @Autowired
+    private ITodoService todoService;
 
     @RequestMapping("/create")
     public String todoCreate(Model model) {
@@ -34,20 +41,22 @@ public class TodoController {
         if (bindingResult.hasErrors()) {
 
             model.addAttribute("form", form);
-            return "todo/create";
+            return "todo/add";
         }
 
-        Todo todo = new Todo();
-        todo.setContent(form.getContent());
-        todo.setDate(form.getDate());
-        todo.setOwner(null);
-        todoRepository.save(todo);
+        todoService.createTodo(form);
 
-        return "redirect:/todo";
+        return "redirect:/";
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String todoDelete(@RequestParam long todoId) {
-        return "redirect:/todo";
+    @RequestMapping(value = "/delete/{todoId}", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean todoDelete(@PathVariable long todoId) {
+        if (!todoService.deleteTodoById(todoId).isPresent()) {
+            LOGGER.error(String.format("Todo (%d) could not be deleted!", todoId));
+
+            return false;
+        }
+        return true;
     }
 }

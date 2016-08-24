@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!-- site title -->
-    <title>Todo App - Sign In</title>
+    <title>Todo App - My Todos</title>
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
@@ -41,7 +41,8 @@
     <div id="bodyContent">
         <div class="row">
             <div class="col-md-12">
-                <div class="panel panel-default">
+                <form action="#" th:action="@{/}" th:object="${form}" name="todoFilterForm" role="form" method="get">
+                    <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-md-8">
@@ -52,34 +53,23 @@
                             <div class="col-md-4">
                                 <div class="input-group todoFilterWrapper">
                                     <input type="text" class="form-control" placeholder="Today todos"/>
-                          <span class="input-group-btn">
-                            <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
-                          </span>
+                                    <input type="hidden" name="range"/>
+                                      <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                      </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="panel-body">
-                        <div class="media">
-                            <div class="media-body">
-                                Apparently we had reached a great height in the atmosphere, for the sky was a dead black, and the stars had ceased to twinkle. By the same illusion which lifts the horizon of the sea to the level of the spectator on a hillside, the sable cloud beneath was dished out, and the car seemed to float in the middle of an immense dark sphere, whose upper half was strewn with silver. Looking down into the dark gulf below, I could see a ruddy light streaming through a rift in the clouds.
-                            </div>
-                            <div class="media-right">
-                                <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#confirmTodoDeletion"><i class="fa fa-remove"></i></button>
-                            </div>
+                        <div class="alert alert-warning" th:if="${#lists.isEmpty(todos)}">
+                            <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> You have no more todos!</p>
                         </div>
-                        <div class="media">
-                            <div class="media-body">bla bla...
-                            </div>
+                        <div th:each="todo : ${todos}" class="media">
+                            <div th:text="${todo.content}" class="media-body">Contenttt..</div>
                             <div class="media-right">
-                                <button class="btn btn-xs btn-danger"><i class="fa fa-remove"></i></button>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-body">bla bla...
-                            </div>
-                            <div class="media-right">
-                                <button class="btn btn-xs btn-danger"><i class="fa fa-remove"></i></button>
+                                <form></form>
+                                <button class="btn btn-xs btn-danger" th:onclick="'deleteTodo(\'' + ${todo.id} + '\', \'this\');'"><i class="fa fa-remove"></i></button>
                             </div>
                         </div>
                     </div>
@@ -90,13 +80,14 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="pull-right">
-                                    <button class="btn btn-xs btn-primary" disabled="true"><i class="fa fa-arrow-left"></i></button>
-                                    <button class="btn btn-xs btn-primary"><i class="fa fa-arrow-right"></i></button>
+                                    <button type="submit" name="page" th:value="${currentPage-1}" th:if="${hasPrevPage}" class="btn btn-xs btn-primary"><i class="fa fa-arrow-left"></i></button>
+                                    <button type="submit" name="page" th:value="${currentPage+1}" th:if="${hasNextPage}" class="btn btn-xs btn-primary"><i class="fa fa-arrow-right"></i></button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -119,5 +110,6 @@
         </div>
     </div>
 </div>
+<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 </body>
 </html>

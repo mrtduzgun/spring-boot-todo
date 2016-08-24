@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import todo.model.AppUser;
 import todo.model.User;
 
 import java.util.Optional;
@@ -31,6 +32,6 @@ public class AppUserDetailService implements UserDetailsService {
         if (!user.isPresent())
             throw new UsernameNotFoundException("User not found with email is " + email);
 
-        return new org.springframework.security.core.userdetails.User(user.get().getEmail(), user.get().getPasswd(), AuthorityUtils.createAuthorityList("USER"));
+        return new AppUser(user.get());
     }
 }

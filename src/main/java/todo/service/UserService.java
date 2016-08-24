@@ -1,8 +1,14 @@
 package todo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import todo.model.AppUser;
+import todo.model.Role;
 import todo.model.User;
 import todo.model.form.UserSignUpForm;
 import todo.repository.UserRepository;
@@ -33,5 +39,15 @@ public class UserService implements IUserService {
     @Override
     public Optional<User> getUserByEmail(String email) {
         return userRepository.findOneByEmail(email);
+    }
+
+    @Override
+    public Optional<User> getCurrentUser() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (!authentication.getAuthorities().contains(new SimpleGrantedAuthority(Role.USER.toString())))
+                return Optional.empty();
+
+        return Optional.of(((AppUser)authentication.getPrincipal()).getUser());
     }
 }

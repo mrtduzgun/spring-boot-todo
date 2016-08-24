@@ -26,9 +26,14 @@ public class Todo {
     private String content;
 
     @NotNull
-    @Column(name = "date")
-    private Date date;
+    @Column(name = "start_date")
+    private Date startDate;
 
+    @NotNull
+    @Column(name = "finish_date")
+    private Date finishDate;
+
+    @NotNull
     @Column(name = "created_date")
     private Date createdDate;
 
@@ -69,11 +74,19 @@ public class Todo {
         this.createdDate = createdDate;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getFinishDate() {
+        return finishDate;
+    }
+
+    public void setFinishDate(Date finishDate) {
+        this.finishDate = finishDate;
     }
 }

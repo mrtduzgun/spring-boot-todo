@@ -13,7 +13,10 @@ public class TodoCreateForm {
     private String content;
 
     @NotEmpty
-    private Date date;
+    private String dateRangeUserFriendly;
+
+    @NotEmpty
+    private String dateRange;
 
     public String getContent() {
         return content;
@@ -23,11 +26,19 @@ public class TodoCreateForm {
         this.content = content;
     }
 
-    public Date getDate() {
-        return date;
+    public String getDateRangeUserFriendly() {
+        return dateRangeUserFriendly;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateRangeUserFriendly(String dateRangeUserFriendly) {
+        this.dateRangeUserFriendly = dateRangeUserFriendly;
+    }
+
+    public String getDateRange() {
+        return dateRange;
+    }
+
+    public void setDateRange(String dateRange) {
+        this.dateRange = dateRange;
     }
 }

@@ -23,21 +23,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests()
-                .antMatchers("/", "/auth/sign-up", "/js/**", "/css/**").permitAll()
-                .anyRequest().authenticated()
+        http
+                .authorizeRequests()
+                .antMatchers("/auth/sign-up", "/js/**", "/css/**").permitAll()
+                .anyRequest().fullyAuthenticated()
                 .and()
-                .formLogin()
-                .loginPage("/auth/login")
-                .failureUrl("/auth/login?error")
-                .usernameParameter("email")
-                .passwordParameter("passwd")
-                .permitAll()
+                    .formLogin()
+                    .loginPage("/auth/login")
+                    .failureUrl("/auth/login?error")
+                    .usernameParameter("email")
+                    .passwordParameter("passwd")
+                    .permitAll()
                 .and()
-                .logout()
-                .logoutUrl("/auth/logout")
-                .logoutSuccessUrl("/")
-                .permitAll();
+                    .logout()
+                    .logoutUrl("/auth/logout")
+                    .logoutSuccessUrl("/auth/login")
+                    .permitAll();
     }
 
     @Autowired
