@@ -32,6 +32,9 @@ public class User {
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private Set<Todo> todos;
 
+    public User() {
+    }
+
     public User(String email, String name, String passwd) {
         this.email = email;
         this.name = name;
