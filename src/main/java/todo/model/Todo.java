@@ -25,19 +25,55 @@ public class Todo {
     @Column(name = "content")
     private String content;
 
+    @NotNull
+    @Column(name = "date")
+    private Date date;
+
     @Column(name = "created_date")
     private Date createdDate;
-
-    @Column(name = "updated_date")
-    private Date updatedDate;
 
     @PrePersist
     private void createdAt() {
         createdDate = new Date();
     }
 
-    @PreUpdate
-    private void updatedAt() {
-        updatedDate = new Date();
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

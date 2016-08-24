@@ -10,19 +10,14 @@ import todo.repository.UserRepository;
  */
 
 @Controller
-@RequestMapping("user")
-public class UserController {
+@RequestMapping("/")
+public class HomeController {
 
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping("/")
-    public String userHome() {
-        return "user/index";
-    }
-
-    @RequestMapping("/")
-    public String userRegister() {
-        return "user/index";
+    @RequestMapping("")
+    public String home() {
+        return "index";
     }
 }

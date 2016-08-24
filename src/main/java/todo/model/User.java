@@ -25,6 +25,10 @@ public class User {
     @Column(name = "name")
     private String name;
 
+    @NotNull
+    @Column(name = "passwd")
+    private String passwd;
+
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private Set<Todo> todos;
 
@@ -50,5 +54,13 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
     }
 }

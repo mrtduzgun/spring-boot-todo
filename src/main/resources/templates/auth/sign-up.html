@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- meta tags -->
     <meta charset="UTF-8"/>
@@ -28,37 +27,42 @@
     <div id="bodyContent">
         <div class="row">
             <div id="authContainer" class="center-block">
-                <form action="#" th:action="@{/auth/login}" th:object="${form}" name="loginForm" role="form" class="form-horizontal" method="post">
+                <form action="#" th:action="@{/auth/sign-up}" th:object="${form}" name="loginForm" role="form" class="form-horizontal" method="post">
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                        <p>Email or password not matched!</p>
+                    </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <div class="panel-title">
-                                <h4><i class="fa fa fa-sticky-note-o fa-lg"></i> &nbsp;Todo App - Sign In</h4>
+                                <h4><i class="fa fa fa-sticky-note-o fa-lg"></i> &nbsp;Todo App - Sign Up</h4>
                             </div>
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control" id="loginEmail" ng-model="email" name="email" placeholder="Email" th:field="*{email}"/>
+                                    <input type="text" class="form-control" id="loginEmail" name="email" placeholder="Email" th:field="*{email}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <input type="password" class="form-control" id="loginPasswd" ng-model="passwd" name="passwd" placeholder="Password" th:field="*{passwd}"/>
+                                    <input type="text" class="form-control" id="loginFullname" name="fullname" placeholder="Your Name" th:field="*{fullname}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <input type="password" class="form-control" id="loginPasswd" name="passwd" placeholder="Password" th:field="*{passwd}"/>
                                 </div>
                             </div>
                         </div>
                         <div class="panel-footer">
                             <div class="row">
                                 <div class="col-md-9">
-                                    <div class="checkbox checkbox-inline checkbox-primary">
-                                        <input type="checkbox" id="rememberMe" ng-model="isRemember" ng-true-value="true" ng-false-value="false"/>
-                                        <label for="rememberMe">Remember Me ?</label>
-                                    </div>
+                                    <a href="/auth/login">Already Member?</a>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="pull-right">
                                         <button class="btn btn-primary" type="submit">
-                                            <i class="fa fa-sign-in"></i> Login
+                                            <i class="fa fa-user-plus"></i> Sign Up
                                         </button>
                                     </div>
                                 </div>

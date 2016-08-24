@@ -1,41 +1,123 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-
     <!-- meta tags -->
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!-- site title -->
-    <title>Spring Boot Sample Todo App</title>
+    <title>Todo App - Sign In</title>
 
     <!-- Styles -->
-    <link type="text/css" rel="stylesheet" href=""/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+    <link type="text/css" rel="stylesheet" href="/js/bootstrap/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/js/bootstrap/bootstrap-theme.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/font-awesome/font-awesome.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/js/daterangepicker/daterangepicker.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
 
     <!-- Scripts -->
-    <script type="text/javascript" src=""></script>
+    <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="/js/daterangepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="/js/todo.js"></script>
+
+    <style>
+        .media {
+            padding: 5px 0;
+            border-bottom: 1px solid #dedede;
+        }
+
+        .media button {
+            border-radius: 10px;
+        }
+    </style>
 
 </head>
-<body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-2 col-sm-2 col-md-2">
-
-            <!-- Left Side Bar -->
-            <div id="leftSidebar"></div>
-
-        </div>
-        <div class="col-xs-10 col-sm-10 col-md-10">
-
-            <!-- Header -->
-            <div id="header"></div>
-
-            <!-- Body Content -->
-            <div id="bodyContent"></div>
-
+<body class="singleCol">
+<div class="container">
+    <div id="bodyContent">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="panel-title">
+                                    <h4><i class="fa fa fa-sticky-note-o fa-lg"></i> &nbsp;My Todos</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group todoFilterWrapper">
+                                    <input type="text" class="form-control" placeholder="Today todos"/>
+                          <span class="input-group-btn">
+                            <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                          </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="media">
+                            <div class="media-body">
+                                Apparently we had reached a great height in the atmosphere, for the sky was a dead black, and the stars had ceased to twinkle. By the same illusion which lifts the horizon of the sea to the level of the spectator on a hillside, the sable cloud beneath was dished out, and the car seemed to float in the middle of an immense dark sphere, whose upper half was strewn with silver. Looking down into the dark gulf below, I could see a ruddy light streaming through a rift in the clouds.
+                            </div>
+                            <div class="media-right">
+                                <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#confirmTodoDeletion"><i class="fa fa-remove"></i></button>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-body">bla bla...
+                            </div>
+                            <div class="media-right">
+                                <button class="btn btn-xs btn-danger"><i class="fa fa-remove"></i></button>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-body">bla bla...
+                            </div>
+                            <div class="media-right">
+                                <button class="btn btn-xs btn-danger"><i class="fa fa-remove"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <a href="/todo/create" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i> Add Todo</a>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="pull-right">
+                                    <button class="btn btn-xs btn-primary" disabled="true"><i class="fa fa-arrow-left"></i></button>
+                                    <button class="btn btn-xs btn-primary"><i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div id="footer"></div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="confirmTodoDeletion" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Warning!</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete this todo?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Delete</button>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
