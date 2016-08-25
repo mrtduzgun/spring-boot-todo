@@ -5,9 +5,10 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
- * Created by murat.duzgun on 16.8.2016.
+ * "Todo" table entity
+ *
+ * @author Murat Duzgun
  */
-
 @Entity
 @Table(name = "todo")
 public class Todo {
@@ -27,14 +28,17 @@ public class Todo {
 
     @NotNull
     @Column(name = "start_date")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
 
     @NotNull
     @Column(name = "finish_date")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date finishDate;
 
     @NotNull
     @Column(name = "created_date")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
     @PrePersist

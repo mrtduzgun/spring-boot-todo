@@ -19,9 +19,10 @@ import todo.service.IUserService;
 import javax.validation.Valid;
 
 /**
- * Created by murat.duzgun on 16.8.2016.
+ * Controller for authentication
+ *
+ * @author Murat Duzgun
  */
-
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
@@ -37,8 +38,9 @@ public class AuthController {
     }
 
     @RequestMapping("/logout")
-    public String logout() {
-        return "index";
+    public String logout(Model model) {
+        model.addAttribute("form", new UserLoginForm());
+        return "auth/login";
     }
 
     @RequestMapping(value = "/sign-up", method = RequestMethod.GET)

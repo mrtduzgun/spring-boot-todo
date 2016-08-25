@@ -30,11 +30,20 @@
 <body class="singleCol">
 <div class="container">
     <div id="bodyContent" class="center-block" style="width: 60%;">
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-md-12">
+                <div class="pull-right">
+                    <form name="logoutForm" action="#" th:action="@{/auth/logout}" method="post">
+                        <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-user" aria-hidden="true"></i> Sign Out | <i class="fa fa-sign-out" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
-                <form name="addTodoForm" action="#" th:action="@{/todo/create}" th:object="${form}" role="form" class="form-horizontal" method="post">
-                    <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
-                        <p>All fields are required!</p>
+                <form th:action="@{/todo/create}" th:object="${form}" role="form" class="form-horizontal" method="post">
+                    <div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+                        <p><i class="fa fa-times" aria-hidden="true"></i> Todo content must be required!</p>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -46,13 +55,13 @@
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <label for="todoContent">Todo Content</label>
-                                    <textarea class="form-control" name="todoContent" id="todoContent" th:field="*{content}" style="height: 200px;" placeholder="eg. take some breads from shop!!!"></textarea>
+                                    <textarea class="form-control" name="content" id="todoContent" th:field="*{content}" style="height: 200px;" placeholder="eg. take some breads from shop!!!"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <label for="todoContent">Todo Date</label>
-                                    <div class="input-group todoFilterWrapper">
+                                    <div class="input-group todoFilterWrapper" id="todoAddFilter">
                                         <input type="text" class="form-control" th:field="*{dateRangeUserFriendly}"/>
                                         <input type="hidden" th:field="*{dateRange}"/>
                                       <span class="input-group-btn">

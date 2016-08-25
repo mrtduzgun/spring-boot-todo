@@ -16,15 +16,19 @@ import todo.repository.UserRepository;
 import java.util.Optional;
 
 /**
- * Created by Murat on 24.08.2016.
+ * Implements for User operations
+ *
+ * @author Murat Duzgun
  */
-
 @Service
 public class UserService implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * create user from sign up form
+     * */
     @Override
     public User createUser(UserSignUpForm userSignUpForm) {
 
@@ -41,6 +45,9 @@ public class UserService implements IUserService {
         return userRepository.findOneByEmail(email);
     }
 
+    /**
+     * get current authenticated user that has only role 'USER'
+     * */
     @Override
     public Optional<User> getCurrentUser() {
 

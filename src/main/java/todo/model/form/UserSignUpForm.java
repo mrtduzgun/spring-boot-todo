@@ -3,7 +3,9 @@ package todo.model.form;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * Created by Murat on 24.08.2016.
+ * Form model for user sign up form
+ *
+ * @author Murat Duzgun
  */
 public class UserSignUpForm {
 

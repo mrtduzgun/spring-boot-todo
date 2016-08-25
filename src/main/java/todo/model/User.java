@@ -5,9 +5,10 @@ import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 /**
- * Created by murat.duzgun on 16.8.2016.
+ * "users" table entity
+ *
+ * @author Murat Duzgun
  */
-
 @Entity
 @Table(name = "users")
 public class User {

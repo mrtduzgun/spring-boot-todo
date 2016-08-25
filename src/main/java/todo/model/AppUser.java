@@ -7,7 +7,9 @@ import org.springframework.security.core.userdetails.*;
 import java.util.Collection;
 
 /**
- * Created by Murat on 24.08.2016.
+ * Our user model inherited by Spring Security User model
+ *
+ * @author Murat Duzgun
  */
 public class AppUser extends org.springframework.security.core.userdetails.User {
 

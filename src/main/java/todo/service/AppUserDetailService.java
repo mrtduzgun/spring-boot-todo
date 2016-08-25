@@ -12,7 +12,9 @@ import todo.model.User;
 import java.util.Optional;
 
 /**
- * Created by Murat on 24.08.2016.
+ * Custom user detail service inherited by spring security user details
+ *
+ * @author Murat Duzgun
  */
 @Service
 public class AppUserDetailService implements UserDetailsService {

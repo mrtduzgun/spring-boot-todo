@@ -12,9 +12,10 @@ import todo.model.User;
 import java.util.Date;
 
 /**
- * Created by murat.duzgun on 16.8.2016.
+ * Todo jpa abstract layer
+ *
+ * @author Murat Duzgun
  */
-
 @Repository
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 

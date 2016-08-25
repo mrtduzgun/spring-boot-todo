@@ -15,9 +15,10 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * Created by Murat on 24.08.2016.
+ * Implements for Todo operations
+ *
+ * @author Murat Duzgun
  */
-
 @Service
 public class TodoService implements ITodoService {
 
@@ -27,6 +28,9 @@ public class TodoService implements ITodoService {
     @Autowired
     private IUserService userService;
 
+    /**
+     * create a todo from todo create form
+     * */
     @Override
     public Todo createTodo(TodoCreateForm form) {
 
@@ -44,6 +48,9 @@ public class TodoService implements ITodoService {
         return todo;
     }
 
+    /**
+     * Delete todo by todo id
+     * */
     @Override
     public Optional<Todo> deleteTodoById(long todoId) {
         Optional<Todo> foundTodo = Optional.of(todoRepository.findOne(todoId));
@@ -51,6 +58,9 @@ public class TodoService implements ITodoService {
         return foundTodo;
     }
 
+    /**
+     * Get todos from specific date range with pagination
+     * */
     @Override
     public Page<Todo> getTodoPageByDateRange(DateRange dateRange, int pageNum, int pageSize) {
 
@@ -58,6 +68,9 @@ public class TodoService implements ITodoService {
         return todoRepository.getTodoPageByDateRange(dateRange.getBeginDate(), dateRange.getEndDate(), userService.getCurrentUser().get(), pageRequest);
     }
 
+    /**
+     * Get todos with pagination
+     * */
     @Override
     public Page<Todo> getTodoPage(int pageNum, int pageSize) {
 

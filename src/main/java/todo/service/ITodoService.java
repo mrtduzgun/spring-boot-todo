@@ -10,7 +10,9 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * Created by Murat on 24.08.2016.
+ * Interface for Todo operations
+ *
+ * @author Murat Duzgun
  */
 public interface ITodoService {
 

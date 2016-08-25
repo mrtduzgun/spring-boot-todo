@@ -14,9 +14,10 @@ import todo.service.IUserService;
 import javax.validation.Valid;
 
 /**
- * Created by murat.duzgun on 16.8.2016.
+ * Controller for operations related todo
+ *
+ * @author Murat Duzgun
  */
-
 @Controller
 @RequestMapping("todo")
 public class TodoController {
@@ -36,10 +37,9 @@ public class TodoController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String todoCreateSubmit(@Valid @ModelAttribute TodoCreateForm form, BindingResult bindingResult, Model model) {
+    public String todoCreateSubmit(@Valid @ModelAttribute("form") TodoCreateForm form, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-
             model.addAttribute("form", form);
             return "todo/add";
         }

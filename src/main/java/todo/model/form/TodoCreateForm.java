@@ -5,7 +5,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 import java.util.Date;
 
 /**
- * Created by Murat on 24.08.2016.
+ * Form model todo create form
+ *
+ * @author Murat Duzgun
  */
 public class TodoCreateForm {
 

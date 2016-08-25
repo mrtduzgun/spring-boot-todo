@@ -10,9 +10,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
- * Created by murat.duzgun on 16.8.2016.
+ * App security mappings and settings
+ *
+ * @author Murat Duzgun
  */
-
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {

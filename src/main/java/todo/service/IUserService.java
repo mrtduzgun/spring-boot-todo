@@ -6,7 +6,9 @@ import todo.model.form.UserSignUpForm;
 import java.util.Optional;
 
 /**
- * Created by Murat on 24.08.2016.
+ * Interface for User operations
+ *
+ * @author Murat Duzgun
  */
 public interface IUserService {
 

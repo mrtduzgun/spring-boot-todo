@@ -39,6 +39,15 @@
 <body class="singleCol">
 <div class="container">
     <div id="bodyContent">
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-md-12">
+                <div class="pull-right">
+                    <form name="logoutForm" action="#" th:action="@{/auth/logout}" method="post">
+                        <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-user" aria-hidden="true"></i> Sign Out | <i class="fa fa-sign-out" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <form action="#" th:action="@{/}" th:object="${form}" name="todoFilterForm" role="form" method="get">
@@ -51,8 +60,8 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="input-group todoFilterWrapper">
-                                    <input type="text" class="form-control" placeholder="Today todos"/>
+                                <div class="input-group todoFilterWrapper" id="todoFilter">
+                                    <input type="text" class="form-control" name="label"/>
                                     <input type="hidden" name="range"/>
                                       <span class="input-group-btn">
                                         <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
@@ -66,7 +75,14 @@
                             <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> You have no more todos!</p>
                         </div>
                         <div th:each="todo : ${todos}" class="media">
-                            <div th:text="${todo.content}" class="media-body">Contenttt..</div>
+                            <div class="media-body">
+                                <div class="row">
+                                    <div class="col-md-10" th:text="${todo.content}"></div>
+                                    <div class="col-md-2">
+                                        <div class="badge"><i>Due Date: </i><span th:text="${#dates.format(todo.finishDate, 'dd/MM/yyyy')}">24 Agu 2016</span></div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="media-right">
                                 <form></form>
                                 <button class="btn btn-xs btn-danger" th:onclick="'deleteTodo(\'' + ${todo.id} + '\', \'this\');'"><i class="fa fa-remove"></i></button>

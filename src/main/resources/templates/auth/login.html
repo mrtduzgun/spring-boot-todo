@@ -30,6 +30,9 @@
         <div class="row">
             <div id="authContainer" class="center-block">
                 <form action="#" th:action="@{/auth/login}" th:object="${form}" name="loginForm" role="form" class="form-horizontal" method="post">
+                    <div class="alert alert-danger" th:unless="${param.error == null}">
+                        <p><i class="fa fa-ban" aria-hidden="true"></i> Email or password not matched!</p>
+                    </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <div class="panel-title">
@@ -50,13 +53,7 @@
                         </div>
                         <div class="panel-footer">
                             <div class="row">
-                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                    <div class="checkbox checkbox-inline checkbox-primary">
-                                        <input type="checkbox" id="rememberMe" ng-model="isRemember" ng-true-value="true" ng-false-value="false"/>
-                                        <label for="rememberMe">Remember Me ?</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                <div class="col-md-12">
                                     <div class="pull-right">
                                         <a class="btn btn-primary" href="/auth/sign-up">
                                             <i class="fa fa-user-plus"></i> Sign Up

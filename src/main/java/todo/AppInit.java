@@ -6,9 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
- * Created by murat.duzgun on 16.8.2016.
+ * App Runner
+ *
+ * @author Murat Duzgun
  */
-
 @SpringBootApplication
 public class AppInit {
 

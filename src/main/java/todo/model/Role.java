@@ -1,7 +1,9 @@
 package todo.model;
 
 /**
- * Created by Murat on 24.08.2016.
+ * User roles
+ *
+ * @author Murat Duzgun
  */
 public enum Role {
 
